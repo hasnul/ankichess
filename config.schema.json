@@ -1,0 +1,32 @@
+{
+   "$schema":"http://json-schema.org/draft/2020-12/schema",
+   "title":"Config options",
+   "description":"Config options for Anki addon replace_fen_with_svg",
+   "type":"object",
+   "properties":{
+      "size":{
+         "description":"Size of board in pixels",
+         "type":"integer",
+         "minimum": 100
+      },
+      "orientation":{
+         "description":"Orientation of board image",
+         "type":"string",
+         "pattern": "^(white|black|auto|random)$"
+      },
+      "coordinate":{
+         "description": "Display coordinate margin",
+         "type":"boolean"
+      },
+      "move":{
+          "description": "Show move indicator image",
+          "type":"boolean"
+      }
+   },
+   "required":[
+      "size",
+      "orientation",
+      "coordinate",
+      "move"
+   ]
+}
