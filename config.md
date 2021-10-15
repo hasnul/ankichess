@@ -19,11 +19,11 @@ Default is "auto".
 **coordinate**: _boolean_
 
 Coordinate margin is shown if value is true, hidden otherwise.  
-Default is False.
+Default is false.
 
 ---
 **move**: _boolean_
 
 Show an image of a pawn with the color of the side to move next to the board, 
 if this option is true.  
-Default is True.
+Default is true.

@@ -2,8 +2,7 @@
 Add-ons for Anki 2.1+ to support learning chess using Anki.  
 There is only one add-on at the moment, namely **replace_fen_with_svg**.
 The addon depends on the following non-standard packages:
-- `chess` 
-The `chess` package is bundled with this addon.  
+- `chess` : bundled with this addon.  
 
 
 No unit testing has been done.  
