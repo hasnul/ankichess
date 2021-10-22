@@ -19,11 +19,67 @@ from random import randrange
 import anki
 from aqt import gui_hooks
 from aqt import mw
+from aqt.qt import QObject, QTimer, pyqtSlot
 
 __version__ = '0.1.0'
 
 
 config = mw.addonManager.getConfig(__name__)
+
+class ChessTimer(QObject):
+
+    def __init__(self, max_time_in_secs: int = 60):
+        self.total_secs = max_time_in_secs
+        self.timer = QTimer()
+        self.timer.timeout.connect(lambda: self.tick())
+
+    @pyqtSlot()
+    def tick(self):
+        self.total_secs -= 1
+        if self.total_secs > 0:
+            # emit tick signal
+            pass
+        if self.total_secs <= 0:
+            if self.total_secs == 0:
+                # emit tick signal
+                pass
+            else:
+                # emit expired signal
+                pass
+
+    def remaining_time_as_fstring(self):
+        mins_remaining = int(self.total_secs/60)
+
+        if mins_remaining == 0:
+            minutes_str = "00"
+        elif mins_remaining < 10:
+            minutes_str = "0" + str(mins_remaining)
+        else:
+            minutes_str = str(mins_remaining)
+        
+        secs_remaining = self.total_secs % 60
+        if secs_remaining == 0:
+            seconds_str = "00"
+        elif secs_remaining < 10:
+            seconds_str = "0" + str(secs_remaining)
+        else:
+            seconds_str = str(secs_remaining)
+        return f"{minutes_str}:{seconds_str}"
+
+    def run(self):
+        self.timer.start(1000)
+        # emit start signal
+
+
+ankichess_timer = ChessTimer()
+
+
+def start_chess_timer(text: str, card: anki.cards.Card, kind: str) -> None:
+    # start the timer
+    # update the timer div element every sec
+    # show time's up label
+    # play sound on time up
+    pass
 
 
 def get_status_string(status: chess.Status) -> str:
@@ -101,7 +157,8 @@ def replace_fen_with_svg(text: str, card: anki.cards.Card, kind: str) -> str:
         except Exception as error:
             return text + "<br><p>Error: " + str(error) + "</p>"
     else:
-        return text + "<br><p>FEN not found.</p>"
+        return text  # silently ignore FEN tag not found
 
 
 gui_hooks.card_will_show.append(replace_fen_with_svg)
+gui_hooks.card_will_show.append(start_chess_timer)
