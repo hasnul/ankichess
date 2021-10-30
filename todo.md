@@ -1,9 +1,27 @@
+#### bugs
+
+- [x] won't parse fen if there are empty spaces at the start
+- [x] second position on card not displayed; duplicates earlier position
+
+#### features
+
+- [ ] set board size per card
+- [ ] single tag; make it simpler to type e.g. fen:[fen string here]. "Tags" are 'fen::' and '.'
+- [ ] Also show board image during browsing? Can this be done?
+- [ ] add test functions!
+
 #### more options
 
 - quiet
 - enabled
 - timer
 - auto grade
+
+#### simple tags
+
+fen::[fen string]::[optional attributes].
+[fen string] := valid fen string
+[optional attributes] := attribute-value pair; ... 
 
 #### v2: xml markup
 <?xml version="1.0">

@@ -130,15 +130,16 @@ def get_orientation(board: chess.Board) -> chess.Color:
 def replace_fen_with_svg(text: str, card: anki.cards.Card, kind: str) -> str:
     """Replace FEN string of a chess position with an svg of the position."""
     fen_pattern = re.compile(r"\[fen\](.+?)\[/fen\]", re.DOTALL | re.IGNORECASE)
-    match = fen_pattern.search(text)
-    if match:
-        fen = match.group(1)
+    matcher = fen_pattern.finditer(text)
+
+    for m in matcher:
+        fen = m[1]
         try:
-            board = chess.Board(fen)
+            board = chess.Board(fen.strip())
 
             if not board.is_valid():
                 status_string = get_status_string(board.status)
-                return text + "<br><p align='left'>Invalid FEN:</p>" + status_string
+                text = text + "<br><p align='left'>Invalid FEN:</p>" + status_string
 
             size = config["size"]
             orientation = get_orientation(board)
@@ -156,12 +157,11 @@ def replace_fen_with_svg(text: str, card: anki.cards.Card, kind: str) -> str:
 
             svg = chess.svg.board(board, orientation=orientation,
                                   coordinates=config["coordinate"], size=size)
-            return re.sub(fen_pattern, svg + move_svg, text)
+            text = re.sub(fen_pattern, svg + move_svg, text, count=1)
 
         except Exception as error:
-            return text + "<br><p>Error: " + str(error) + "</p>"
-    else:
-        return "no fen" + text  # silently ignore FEN tag not found
+            text = text + "\n<br><p>Error: " + str(error) + "</p>"
 
+    return text
 
 gui_hooks.card_will_show.append(replace_fen_with_svg)
