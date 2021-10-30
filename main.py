@@ -10,6 +10,10 @@ There are a few options to configure the svg output.
 The default values of the options are in config.json and the schema is in
 config.schema.json.
 """
+import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "dist"))
+
 import chess
 import chess.svg
 
@@ -157,8 +161,7 @@ def replace_fen_with_svg(text: str, card: anki.cards.Card, kind: str) -> str:
         except Exception as error:
             return text + "<br><p>Error: " + str(error) + "</p>"
     else:
-        return text  # silently ignore FEN tag not found
+        return "no fen" + text  # silently ignore FEN tag not found
 
 
 gui_hooks.card_will_show.append(replace_fen_with_svg)
-gui_hooks.card_will_show.append(start_chess_timer)
