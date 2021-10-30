@@ -6,7 +6,7 @@
 #### features
 
 - [ ] set board size per card
-- [ ] single tag; make it simpler to type e.g. fen:[fen string here]. "Tags" are 'fen::' and '.'
+- [x] single tag; make it simpler to type e.g. fen:[fen string here]. "Tags" are 'fen::' and '.'
 - [ ] Also show board image during browsing? Can this be done?
 - [ ] add test functions!
 

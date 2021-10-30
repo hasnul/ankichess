@@ -129,7 +129,7 @@ def get_orientation(board: chess.Board) -> chess.Color:
 
 def replace_fen_with_svg(text: str, card: anki.cards.Card, kind: str) -> str:
     """Replace FEN string of a chess position with an svg of the position."""
-    fen_pattern = re.compile(r"\[fen\](.+?)\[/fen\]", re.DOTALL | re.IGNORECASE)
+    fen_pattern = re.compile(r"fen::(.+?)(?:\.|<br>|$)", re.DOTALL | re.IGNORECASE)
     matcher = fen_pattern.finditer(text)
 
     for m in matcher:
@@ -139,7 +139,8 @@ def replace_fen_with_svg(text: str, card: anki.cards.Card, kind: str) -> str:
 
             if not board.is_valid():
                 status_string = get_status_string(board.status)
-                text = text + "<br><p align='left'>Invalid FEN:</p>" + status_string
+                text = text + "<br><p align='left'>Invalid FEN: </p>" + status_string
+                continue
 
             size = config["size"]
             orientation = get_orientation(board)
@@ -157,7 +158,7 @@ def replace_fen_with_svg(text: str, card: anki.cards.Card, kind: str) -> str:
 
             svg = chess.svg.board(board, orientation=orientation,
                                   coordinates=config["coordinate"], size=size)
-            text = re.sub(fen_pattern, svg + move_svg, text, count=1)
+            text = re.sub(fen_pattern, svg + move_svg + "<br>", text, count=1)
 
         except Exception as error:
             text = text + "\n<br><p>Error: " + str(error) + "</p>"
