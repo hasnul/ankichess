@@ -134,8 +134,19 @@ def replace_fen_with_svg(text: str, card: anki.cards.Card, kind: str) -> str:
 
     for m in matcher:
         fen = m[1]
+        fen_str = fen.strip()
+        fen_fields = fen_str.split(' ')
+        orientation_specified = False
+        if len(fen_fields) == 7:
+            orientation_specified = True
+            orientation_char = fen_fields[-1].lower()
+            if orientation_char == 'b':
+                orientation = chess.BLACK
+            else:
+                orientation = chess.WHITE
+            fen_str = ' '.join(fen_fields[:-1])
         try:
-            board = chess.Board(fen.strip())
+            board = chess.Board(fen_str)
 
             if not board.is_valid():
                 status_string = get_status_string(board.status)
@@ -143,7 +154,8 @@ def replace_fen_with_svg(text: str, card: anki.cards.Card, kind: str) -> str:
                 continue
 
             size = config["size"]
-            orientation = get_orientation(board)
+            if not orientation_specified:
+                orientation = get_orientation(board)
 
             if config["move"]:
                 piece_size = size / 10
