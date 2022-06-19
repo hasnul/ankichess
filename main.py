@@ -3,8 +3,9 @@ Add-ons for Anki 2.1+ to support learning chess using Anki.
 
 There is only one add-on at the moment, namely **replace_fen_with_svg**.
 It replaces a Forsyth–Edwards Notation (FEN) of a chess position
-with an SVG. The FEN string must be enclosed by a FEN tag pair.
-The opening FEN tag is `[fen]` ;the closing FEN tag is `[/fen]`.
+with an SVG. 
+
+A FEN string starts with `fen::` and ends with newline or `<br>`.
 
 There are a few options to configure the svg output.
 The default values of the options are in config.json and the schema is in
