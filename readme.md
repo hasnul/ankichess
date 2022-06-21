@@ -1,14 +1,21 @@
 # Ankichess
 
-This repo contains
+This repo contains number of **hacks** for working with chess FEN diagrams and PGN
+files in Anki.
+It contains:
 - an explanation of how to get a PGN viewer working in Anki
 - an Anki addon called *ankichess* that convert a tagged fen string into an image
+Last "tested" on Anki version 2.1.53.
 
 ## PGN Viewer in Anki
 The PGN viewer used is based on [JS PGN Viewer](https://toomasr.github.io/jspgnviewer/).
 The "prototype" system for our PGN viewer is located in the directory _pgnviewer_.
 The javascript file "\_chess.js" is a concatenation of the files "\_board.js", 
 "\_pgn.js" and "\_converter.js".
+
+### Screenshots
+![:(](screenshots/shot1.png)
+![:(](screenshots/shot2.png)
 
 ### Installation
 1. Copy the folders *js* and *img* from _pgnviewer_ into collection.media
@@ -128,6 +135,9 @@ The addon depends on the following non-standard packages:
 No unit testing has been done.  
 A handful of runs have been done using Anki desktop on Ubuntu 20.04.
 
+### Screenshots
+![:(](screenshots/shot3.png)
+![:(](screenshots/shot4.png)
 
 ### replace_fen_with_svg
 
