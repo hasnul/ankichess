@@ -14,6 +14,12 @@ The "prototype" system for our PGN viewer is located in the directory _pgnviewer
 The javascript file "\_chess.js" is a concatenation of the files "\_board.js", 
 "\_pgn.js" and "\_converter.js".
 
+Optional "arguments":
+- In div with id="jump": specify a _ply_ to jump to initially. The default is to jump to
+the last position
+- In div with id="side": flips the board if the div contains the text "black" as shown in 
+the screenshot
+
 ### Screenshots
 ![:(](screenshots/shot1.png)
 ![:(](screenshots/shot2.png)
