@@ -4,7 +4,8 @@ This repo contains number of **hacks** for working with chess FEN diagrams and P
 files in Anki.
 It contains:
 - an explanation of how to get a PGN viewer working in Anki
-- an Anki addon called *ankichess* that convert a tagged fen string into an image
+- an Anki addon called *ankichess* that converts a tagged fen string into an image
+
 Last "tested" on Anki version 2.1.53.
 
 ## PGN Viewer in Anki
