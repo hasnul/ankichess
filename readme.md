@@ -4,6 +4,7 @@ This repo contains a number of **hacks** for working with chess FEN diagrams and
 files in Anki.
 It contains:
 - an explanation of how to get a PGN viewer working in Anki
+- how to get a board with pieces that can be moved around
 - an Anki addon called *ankichess* that converts a tagged fen string into an image
 
 Last "tested" on Anki version 2.1.53.
@@ -136,6 +137,107 @@ num {
   </div>
 ```
 
+## Interactive Board
+
+This hack uses the [chessboard.js](https://chessboardjs.com/) library to get an
+interactive board with spare pieces. Chess rules are not enforced.
+
+### Screenshots
+![:(](screenshots/shot5.png)
+![:(](screenshots/shot6.gif)
+
+### Installation
+Similar to getting pgn viewer working. Bit simpler.
+
+1. Copy the contents of chessboard.js folder to collection.media
+2. Create a new note type
+3. Front tempate:
+```
+{{Front}}
+
+<div id="orientation" style="visibility: hidden; display: none">black</div>
+<div id="spare" style="visibility: hidden; display: none">true</div>
+<div id="myBoard" style="width: 400px"></div>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/chessboard-1.0.0.js"></script>
+<script>
+var board = Chessboard('myBoard', {
+  position: document.getElementById("position").innerText,
+  showNotation: false,
+  draggable: true,
+  orientation: document.getElementById("orientation").innerText,
+  dropOffBoard: 'trash',
+  sparePieces: document.getElementById("spare").innerText == 'true'
+})
+</script>
+```
+4. Styling
+```
+.card {
+    font-family: arial;
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    background-color: white;
+}
+
+#myBoard {
+  display: inline-block;
+}
+
+.clearfix-7da63 {
+  clear: both;
+}
+
+.board-b72b1 {
+  border: 2px solid #404040;
+  box-sizing: content-box;
+}
+
+.square-55d63 {
+  float: left;
+  position: relative;
+
+  /* disable any native browser highlighting */
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.white-1e1d7 {
+  background-color: #f0d9b5;
+  color: #b58863;
+}
+
+.black-3c85d {
+  background-color: #b58863;
+  color: #f0d9b5;
+}
+
+.highlight1-32417, .highlight2-9c5d2 {
+  box-shadow: inset 0 0 3px 3px yellow;
+}
+
+.notation-322f9 {
+  cursor: default;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  position: absolute;
+}
+
+.alpha-d2270 {
+  bottom: 1px;
+  right: 3px;
+}
+
+.numeric-fc462 {
+  top: 2px;
+  left: 2px;
+}
+```
 ## Addons
 Add-ons for Anki 2.1+ to support learning chess using Anki.  
 There is only one add-on at the moment, namely **replace_fen_with_svg**.
