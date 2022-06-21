@@ -20,6 +20,10 @@ the last position
 - In div with id="side": flips the board if the div contains the text "black" as shown in 
 the screenshot
 
+Keyboard shortcuts:
+- 'j': move forward (down)
+- 'k': move backward (up)
+
 ### Screenshots
 ![:(](screenshots/shot1.png)
 ![:(](screenshots/shot2.png)
