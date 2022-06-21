@@ -1,6 +1,6 @@
 # Ankichess
 
-This repo contains number of **hacks** for working with chess FEN diagrams and PGN
+This repo contains a number of **hacks** for working with chess FEN diagrams and PGN
 files in Anki.
 It contains:
 - an explanation of how to get a PGN viewer working in Anki
