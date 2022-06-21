@@ -152,7 +152,7 @@ Similar to getting pgn viewer working. Bit simpler.
 1. Copy the contents of chessboard.js folder to collection.media
 2. Create a new note type
 3. Front tempate:
-```
+```javascript
 {{Front}}
 
 <div id="orientation" style="visibility: hidden; display: none">black</div>
@@ -172,7 +172,7 @@ var board = Chessboard('myBoard', {
 </script>
 ```
 4. Styling
-```
+```css
 .card {
     font-family: arial;
     font-size: 20px;
