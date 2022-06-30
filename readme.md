@@ -267,3 +267,4 @@ Create a folder `ankichess` in the Anki addons folder and
 copy the contents of this folder there.
 Symbolic linking from the Anki addons folder to another
 location does not work at time of writing (Anki v2.1.53).
+Update: Symbolic linking does not work when Anki is sandboxed in a flatpak.
